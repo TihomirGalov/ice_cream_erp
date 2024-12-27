@@ -1,0 +1,53 @@
+{% extends "admin/change_form.html" %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:stores_store_changelist' %}">{% translate 'Stores' %}</a>
+        &rsaquo; {% translate 'Change' %} {{ model_name|title }}
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content-main">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="module aligned">
+                <h2>{{ title }}</h2>
+                {{ form.as_p }}
+            </fieldset>
+
+        {% if formset %}
+            <h2>Сладоледи</h2>
+            {{ formset.management_form }}
+            {% for inline_form in formset %}
+                <fieldset class="module inlines">
+                    {{ inline_form.as_p }}
+                </fieldset>
+            {% endfor %}
+
+        {% endif %}
+
+            <div class="submit-row">
+                <input type="submit" value="{% translate 'Save' %}" class="default" name="_save">
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+{{ block.super }}
+<style>
+    input[type=checkbox] {
+        display: inline !important;
+    }
+
+    .inlines {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+</style>
+{% endblock %}

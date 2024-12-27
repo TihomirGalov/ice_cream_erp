@@ -1,0 +1,61 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n %}
+
+
+{% block content %}
+{{ block.super }}
+<div class="chart-item">
+    <h3> Най - продаван сладолед</h3>
+    <select name="filter" onchange="change_top_selling(this);">
+        <option value="month">{% translate 'Monthly' %}</option>
+        <option value="year">{% translate 'Yearly' %}</option>
+        <option value="week">{% translate 'Weekly' %}</option>
+    </select>
+    <div id="top-selling-chart"></div>
+
+</div>
+
+<div class="chart-item">
+    <h3> Оборот по дни </h3>
+    <select name="filter" onchange="change_total_sales(this);">
+        <option value="month">{% translate 'Monthly' %}</option>
+        <option value="year">{% translate 'Yearly' %}</option>
+        <option value="week">{% translate 'Monthly' %}</option>
+    </select>
+    <div id="total-sales-chart"></div>
+</div>
+
+<div class="chart-item">
+    <h3> Оборот за работници </h3>
+    <div id="worker-profits-chart"></div>
+</div>
+
+<div class="chart-item">
+    <h3> Оборот за обекти </h3>
+    <div id="store-profits-chart"></div>
+</div>
+
+<div class="chart-item">
+    <input id="calendar" type="date" oninput="change_date()">
+    <h3> Оборот по обекти за ден </h3>
+    <div id="profits-by-day"></div>
+</div>
+
+{% endblock %}
+
+{% block extrajavascript %}
+{{ block.super }}
+<!-- apexcharts -->
+
+<script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'js/top_selling.js' %}"></script>
+<script src="{% static 'js/total_sales.js' %}"></script>
+<script src="{% static 'js/worker_profits.js' %}"></script>
+<script src="{% static 'js/store_profits.js' %}"></script>
+<script src="{% static 'js/profits_by_day.js' %}"></script>
+{% endblock %}
+
+{% block extracss %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/charts.css' %}">
+{% endblock %}

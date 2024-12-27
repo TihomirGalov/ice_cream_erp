@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-21 18:19+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ice_cream_types/models.py:6 stores/models.py:10
+msgid "Name"
+msgstr "Име"
+
+#: ice_cream_types/models.py:12
+msgid "Ice cream type"
+msgstr "Вид сладолед"
+
+#: ice_cream_types/models.py:13
+msgid "Ice cream types"
+msgstr "Видове сладолед"
+
+#: ice_cream_erp/settings.py:155
+msgid "Ice Cream Price"
+msgstr "Цена на сладолед"
+
+#: ice_cream_erp/settings.py:163
+msgid "Auth"
+msgstr "Акаунти"
+
+#: ice_cream_erp/settings.py:164
+msgid "Users"
+msgstr "Потребители"
+
+#: ice_cream_erp/settings.py:165
+msgid "Groups"
+msgstr "Групи"
+
+#: ice_cream_erp/settings.py:167 reports/forms.py:8 reports/models.py:7
+#: reports/resources.py:8 stores/models.py:19 stores/models.py:25
+msgid "Store"
+msgstr "Магазин"
+
+#: ice_cream_erp/settings.py:168 stores/models.py:20
+#: templates/admin/action_form/run_action.html:8
+msgid "Stores"
+msgstr "Магазини"
+
+#: ice_cream_erp/settings.py:170 ice_cream_erp/settings.py:171
+msgid "Ice Cream Types"
+msgstr "Видове сладолед"
+
+#: ice_cream_erp/settings.py:173 ice_cream_erp/settings.py:174 reports/models.py:21
+msgid "Reports"
+msgstr "Ревизии"
+
+#: ice_cream_erp/settings.py:175
+msgid "Add Report"
+msgstr "Добави ревизия"
+
+#: ice_cream_erp/settings.py:177 ice_cream_erp/settings.py:178
+msgid "Charts"
+msgstr "Графики"
+
+#: ice_cream_erp/settings.py:180 ice_cream_erp/settings.py:181
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: reports/admin.py:75
+msgid "Export"
+msgstr "Експортирай"
+
+#: reports/admin.py:79 reports/models.py:28
+msgid "Need refill"
+msgstr "Нужда от зареждане?"
+
+#: reports/admin.py:80
+msgid "Actions"
+msgstr "Приложения"
+
+#: reports/forms.py:16
+msgid "Is rainy"
+msgstr "Дъждовно?"
+
+#: reports/models.py:8 reports/resources.py:9
+msgid "Date"
+msgstr "Дата"
+
+#: reports/models.py:9
+msgid "Rainy"
+msgstr "Дъждовно"
+
+#: reports/models.py:10 reports/resources.py:13 stores/models.py:11
+msgid "Cones"
+msgstr "Фунийки"
+
+#: reports/models.py:11 reports/resources.py:14 stores/models.py:12
+msgid "Cups"
+msgstr "Купички"
+
+#: reports/models.py:12
+msgid "Price"
+msgstr "Цена"
+
+#: reports/models.py:14
+msgid "Notes"
+msgstr "Бележки"
+
+#: reports/models.py:20 reports/models.py:25
+msgid "Report"
+msgstr "Ревизия"
+
+#: reports/models.py:26
+msgid "Ice cream"
+msgstr "Сладолед"
+
+#: reports/models.py:27 stores/models.py:26
+msgid "Quantity"
+msgstr "Количество"
+
+#: reports/models.py:38
+msgid "Report item"
+msgstr "Сладолед от ревизия"
+
+#: reports/models.py:39
+msgid "Report items"
+msgstr "Сладоледи от ревизия"
+
+#: reports/resources.py:11
+msgid "Total"
+msgstr "Общо"
+
+#: reports/resources.py:12
+msgid "Is Rainy"
+msgstr "Дъждовно?"
+
+#: reports/resources.py:32
+msgid "Yes"
+msgstr "Да"
+
+#: reports/resources.py:32
+msgid "No"
+msgstr "Не"
+
+#: stores/forms.py:8
+msgid "Available"
+msgstr "Налично"
+
+#: stores/forms.py:9
+msgid "Increment"
+msgstr "Добави"
+
+#: stores/forms.py:16
+msgid "Increment must be a positive number"
+msgstr "Добавеното трябва да е положително число"
+
+#: stores/models.py:13
+msgid "Worker"
+msgstr "Работник"
+
+#: stores/models.py:24
+msgid "Type"
+msgstr "Тип"
+
+#: stores/models.py:32
+msgid "Ice Cream"
+msgstr "Сладолед"
+
+#: stores/models.py:33
+msgid "Ice Creams"
+msgstr "Сладоледи"
+
+#: templates/admin/action_form/run_action.html:7 templates/admin/base.html:89
+#: templates/admin/base.html:177
+msgid "Home"
+msgstr "Начало"
+
+#: templates/admin/action_form/run_action.html:9
+msgid "Change"
+msgstr "Промени"
+
+#: templates/admin/action_form/run_action.html:33
+msgid "Save"
+msgstr "Запис"
+
+#: templates/admin/base.html:66
+msgid "Welcome,"
+msgstr "Добре дошъл,"
+
+#: templates/admin/base.html:73 templates/admin/base.html:186
+msgid "Documentation"
+msgstr "Документация"
+
+#: templates/admin/base.html:77
+msgid "Change password"
+msgstr "Смени парола"
+
+#: templates/admin/base.html:79
+msgid "Log out"
+msgstr "Отписване"
+
+#: templates/admin/base.html:157
+msgid "back"
+msgstr "назад"
+
+#: templates/admin/base.html:230
+msgid "Applications"
+msgstr "Приложения"
+
+#: templates/admin/base.html:254
+msgid "Hide applications"
+msgstr "Скрии приложения"
+
+#: templates/admin/base.html:255
+msgid "Show hidden"
+msgstr "Покажи скрити"
+
+#: templates/admin/base.html:281 templates/admin/base.html:300
+msgid "Add bookmark"
+msgstr "Добваи отметка"
+
+#: templates/admin/base.html:284
+msgid "Title"
+msgstr "Заглавие"
+
+#: templates/admin/base.html:286
+msgid "URL"
+msgstr "линк"
+
+#: templates/admin/base.html:294
+msgid "Delete bookmark"
+msgstr "Изтрий отметка"
+
+#: templates/admin/base.html:295
+msgid "Are you sure want to delete this bookmark?"
+msgstr "Сигурни ли сте, че искате да изтриете тази отметка?"
+
+#: templates/admin/base.html:302
+msgid "bookmarks"
+msgstr "отметки"
+
+#: templates/admin/base.html:310 templates/admin/base.html:317
+msgid "Remove"
+msgstr "Изтрий"
+
+#: templates/admin/base.html:339
+msgid "Search"
+msgstr "Търси"
+
+#: templates/admin/base.html:344
+msgid "Application page"
+msgstr "Страница с приложенията"
+
+#: templates/admin/base.html:370
+msgid "current theme"
+msgstr "сегашна тема"
+
+#: templates/admin/charts.html:10 templates/admin/charts.html:21
+#: templates/admin/charts.html:23
+msgid "Monthly"
+msgstr "Месечно"
+
+#: templates/admin/charts.html:11 templates/admin/charts.html:22
+msgid "Yearly"
+msgstr "Годишно"
+
+#: templates/admin/charts.html:12
+msgid "Weekly"
+msgstr "Седмично"
