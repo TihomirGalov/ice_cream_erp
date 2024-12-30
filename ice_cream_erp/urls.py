@@ -17,13 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.conf.urls.i18n import i18n_patterns
 
-
+# Add the language switching URL
 urlpatterns = [
-    path("jet/", include("jet.urls", "jet")),  # Django JET URLS
-    path(r'jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
-    path("api/", include("api.urls", "api")),  # Products URLS
-    path('charts/', TemplateView.as_view(template_name='admin/charts.html')),
-    path('reports/', include('reports.urls', 'reports')),
-    path('', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),  # Required for language switching
 ]
+
+# Wrap all admin and other views inside `i18n_patterns` for language prefixes
+urlpatterns += i18n_patterns(
+    path("api/", include(("api.urls", "api"))),  # Products URLS
+    path('charts/', TemplateView.as_view(template_name='admin/charts.html')),
+    path('reports/', include(('reports.urls', 'reports'))),
+    path('', admin.site.urls),  # Admin site
+)
