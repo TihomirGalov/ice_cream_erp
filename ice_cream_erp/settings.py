@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -97,11 +96,11 @@ WSGI_APPLICATION = 'ice_cream_erp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': "ice_cream_erp",
+        'USER': os.environ.get('DB_USER', "postgres"),
+        "PASSWORD": os.environ.get('DB_PASSWORD', "postgres"),
+        "HOST": os.environ.get('DB_HOST', "db"),
+        "PORT": os.environ.get('DB_PORT', "5432"),
     }
 }
 
