@@ -169,41 +169,141 @@ CONSTANCE_CONFIG = {
 
 # # Django Jazzmin Settings
 JAZZMIN_SETTINGS = {
+    # Basic Branding
     "site_title": "Ice Cream ERP",
     "site_header": "Ice Cream ERP Admin",
     "site_brand": "Ice Cream ERP",
     "welcome_sign": "Welcome to Ice Cream ERP Admin",
-    "copyright": "Ice Cream ERP",
     "language_chooser": True,
-    "theme": "flatly",  # Example themes: 'cosmo', 'darkly', 'litera'
+    "theme": "flatly",  # or 'cosmo', 'darkly', 'litera', etc.
 
-    # Add links to the navbar
+    # Top menu (navbar) links
     "topmenu_links": [
-        {"name": "Dashboard", "url": "admin:index"},
-        {"model": "auth.User"},
-        {"model": "stores.Store"},
+        {"name": "Dashboard", "url": "admin:index", "icon": "fas fa-home"},
     ],
 
-    # User menu links
+    # User menu (top-right) links
     "usermenu_links": [
         {"model": "auth.user"},
         {"name": "Logout", "url": "admin:logout", "icon": "fas fa-sign-out-alt"},
     ],
 
-    # FontAwesome Icons
+    # Icons for apps/models (Font Awesome)
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
-        "stores.Store": "fas fa-store",
-        "reports.Report": "fas fa-chart-line",
+        "auth.group": "fas fa-users",
+        "stores.store": "fas fa-store",
+        "ice_cream_types.icecreamtype": "fas fa-ice-cream",
+        "reports": "fas fa-file-alt",
+        "charts": "fas fa-chart-bar",
+        "config": "fas fa-cogs",
     },
 
-    # Theme toggler
+    # Whether to show the theme toggler in the sidebar
     "use_theme_toggler": True,
+
+    # Hide the UI builder link from the sidebar (optional)
     "show_ui_builder": False,
+
+    # The main left-hand menu
+    "menu": [
+        {
+            "label": "Auth",
+            "icon": "fas fa-users-cog",
+            "items": [
+                {
+                    "name": "Users",
+                    # Link directly to the admin for the User model
+                    "model": "auth.user",
+                    "icon": "fas fa-user",
+                },
+                {
+                    "name": "Groups",
+                    "model": "auth.group",
+                    "icon": "fas fa-users",
+                },
+            ],
+        },
+        {
+            "label": "Store",
+            "icon": "fas fa-store",
+            "items": [
+                {
+                    "name": "Stores",
+                    "model": "stores.store",
+                    "icon": "fas fa-store",
+                },
+            ],
+        },
+        {
+            "label": "Ice Cream Types",
+            "icon": "fas fa-ice-cream",
+            "items": [
+                {
+                    "name": "Ice Cream Types",
+                    "model": "ice_cream_types.icecreamtype",
+                    "icon": "fas fa-ice-cream",
+                },
+            ],
+        },
+        {
+            "label": "Reports",
+            "icon": "fas fa-file-alt",
+            "items": [
+                {
+                    "name": "Reports",
+                    "url": "/reports/report/",
+                    "icon": "fas fa-file-alt",
+                },
+                {
+                    "name": "Add Report",
+                    "url": "/reports/select_store/",
+                    "icon": "fas fa-plus",
+                },
+            ],
+        },
+        {
+            "label": "Charts",
+            "icon": "fas fa-chart-bar",
+            "items": [
+                {
+                    "name": "Charts",
+                    "url": "/charts/",
+                    "icon": "fas fa-chart-line",
+                },
+            ],
+        },
+        {
+            "label": "Configuration",
+            "icon": "fas fa-cogs",
+            "items": [
+                {
+                    "name": "Configuration",
+                    "url": "/constance/config/",
+                    "icon": "fas fa-cog",
+                },
+            ],
+        },
+        {
+            "label": "Bookmarks",
+            "icon": "fas fa-bookmark",
+            "items": [
+                {
+                    "name": "Add Bookmark",
+                    "url": "#",
+                    "icon": "fas fa-plus",
+                },
+            ],
+        },
+    ],
 }
 
-LOGIN_REDIRECT_URL = '/'
+# Redirect after login
+LOGIN_REDIRECT_URL = "/"
+
+
+
 
 # Update database configuration from $DATABASE_URL.
 import dj_database_url
