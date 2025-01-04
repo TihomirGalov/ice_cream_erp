@@ -206,6 +206,16 @@ JAZZMIN_SETTINGS = {
     # Hide the UI builder link from the sidebar (optional)
     "show_ui_builder": False,
 
+    "custom_links": {
+        "reports": [
+            {
+                "name": "Add Report",
+                "url": "/reports/select_store/",
+                "icon": "fas fa-plus",
+            },
+        ],
+    },
+
     # The main left-hand menu
     "menu": [
         {
