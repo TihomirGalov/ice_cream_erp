@@ -213,100 +213,15 @@ JAZZMIN_SETTINGS = {
                 "url": "/reports/select_store/",
                 "icon": "fas fa-plus",
             },
+            {
+            "name": "Charts",
+            "url": "/reports/charts/",
+            "icon": "fa fa-chart-bar",
+        },
         ],
     },
 
-    # The main left-hand menu
-    "menu": [
-        {
-            "label": "Auth",
-            "icon": "fas fa-users-cog",
-            "items": [
-                {
-                    "name": "Users",
-                    # Link directly to the admin for the User model
-                    "model": "auth.user",
-                    "icon": "fas fa-user",
-                },
-                {
-                    "name": "Groups",
-                    "model": "auth.group",
-                    "icon": "fas fa-users",
-                },
-            ],
-        },
-        {
-            "label": "Store",
-            "icon": "fas fa-store",
-            "items": [
-                {
-                    "name": "Stores",
-                    "model": "stores.store",
-                    "icon": "fas fa-store",
-                },
-            ],
-        },
-        {
-            "label": "Ice Cream Types",
-            "icon": "fas fa-ice-cream",
-            "items": [
-                {
-                    "name": "Ice Cream Types",
-                    "model": "ice_cream_types.icecreamtype",
-                    "icon": "fas fa-ice-cream",
-                },
-            ],
-        },
-        {
-            "label": "Reports",
-            "icon": "fas fa-file-alt",
-            "items": [
-                {
-                    "name": "Reports",
-                    "url": "/reports/report/",
-                    "icon": "fas fa-file-alt",
-                },
-                {
-                    "name": "Add Report",
-                    "url": "/reports/select_store/",
-                    "icon": "fas fa-plus",
-                },
-            ],
-        },
-        {
-            "label": "Charts",
-            "icon": "fas fa-chart-bar",
-            "items": [
-                {
-                    "name": "Charts",
-                    "url": "/charts/",
-                    "icon": "fas fa-chart-line",
-                },
-            ],
-        },
-        {
-            "label": "Configuration",
-            "icon": "fas fa-cogs",
-            "items": [
-                {
-                    "name": "Configuration",
-                    "url": "/constance/config/",
-                    "icon": "fas fa-cog",
-                },
-            ],
-        },
-        {
-            "label": "Bookmarks",
-            "icon": "fas fa-bookmark",
-            "items": [
-                {
-                    "name": "Add Bookmark",
-                    "url": "#",
-                    "icon": "fas fa-plus",
-                },
-            ],
-        },
-    ],
+
 }
 
 # Redirect after login
