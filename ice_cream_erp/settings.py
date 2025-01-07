@@ -176,7 +176,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Ice Cream ERP Admin",
     "language_chooser": True,
     "theme": "flatly",  # or 'cosmo', 'darkly', 'litera', etc.
-
+    "use_form_for_filters": True,
     # Top menu (navbar) links
     "topmenu_links": [
         {"name": "Dashboard", "url": "admin:index", "icon": "fas fa-home"},

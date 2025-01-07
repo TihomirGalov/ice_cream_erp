@@ -1,5 +1,6 @@
 import csv
 
+from django.http import HttpResponseRedirect
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -25,10 +26,39 @@ class ReportAdmin(ExportMixin, admin.ModelAdmin):
     inlines = (ReportItemInline,)
     resource_class = ReportResource
     list_display = ('date', 'store', 'worker', 'cones', 'cups', 'price', 'need_refill', 'is_rainy', 'report_actions')
-    list_filter = (('date', DateRangeFilter), 'store__name', 'is_rainy')
+    list_filter = ('date', 'store__name', 'is_rainy')
+
+    def changelist_view(self, request, extra_context=None):
+        query_params = request.GET.copy()
+
+        # Fix duplicate 'is_rainy' issue
+        if 'is_rainy' in query_params:
+            values = query_params.getlist('is_rainy')
+            query_params.setlist('is_rainy', [values[-1]])  # Keep only the last value
+
+        if 'date__gte' in query_params and 'date__lte' in query_params:
+            # Remove invalid date values
+            if not query_params['date__gte']:
+                del query_params['date__gte']
+            if not query_params['date__lte']:
+                del query_params['date__lte']
+
+        # Redirect with cleaned parameters if modified
+        if query_params != request.GET:
+            return HttpResponseRedirect(f"{request.path}?{query_params.urlencode()}")
+
+        return super().changelist_view(request, extra_context)
+
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
+        if request.GET.get('is_rainy') is not None:  # Ensure it's a valid filter
+            is_rainy = request.GET.get('is_rainy').lower() == 'true'
+            qs = qs.filter(is_rainy=is_rainy)  # Filter properly
+
+        if request.GET.get('date'):
+            qs = qs.filter(date=request.GET.get('date'))
+
         if request.user.is_superuser:
             return qs
         return qs.filter(store__worker=request.user)
