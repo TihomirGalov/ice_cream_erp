@@ -19,7 +19,7 @@ services:
     volumes:
       - pgdata-ice_cream_erp:/var/lib/postgresql/data/pgdata
     expose:
-        - "5432"
+      - "5432"
     ports:
       - "5432:5432"
   web:

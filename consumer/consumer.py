@@ -1,8 +1,8 @@
-import requests
 import asyncio
 import json
-import pika
 import os
+import pika
+import requests
 
 RABBITMQ_HOST = os.getenv('RABBITMQ_HOST')
 RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE')
@@ -46,7 +46,7 @@ def send_discord_message(message):
 # ======================
 #  RABBITMQ LOGIC
 # ======================
-def rabbitmq_consumer(loop: asyncio.AbstractEventLoop):
+def rabbitmq_consumer():
     print("[RabbitMQ] Connecting to RabbitMQ...", flush=True)
     """
     Connect to RabbitMQ, consume messages from the queue, and schedule
@@ -90,7 +90,7 @@ def rabbitmq_consumer(loop: asyncio.AbstractEventLoop):
 # ======================
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    loop.create_task(rabbitmq_consumer(loop))
+    loop.create_task(rabbitmq_consumer())
 
     try:
         loop.run_forever()
