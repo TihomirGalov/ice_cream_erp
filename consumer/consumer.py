@@ -40,7 +40,16 @@ def send_discord_message(message):
     if response.status_code != 204:
         print(f"[Discord] Error sending message: {response.text}", flush=True)
 
-    print(f"[Discord] Message sent successfully!", flush=True)
+        for _ in range(3):
+            response = requests.post(DISCORD_WEBHOOK_URL, headers=headers, data=json.dumps(data))
+            if response.status_code == 204:
+                print(f"[Discord] Message sent successfully!", flush=True)
+                break
+            else:
+                print(f"[Discord] Error sending message: {response.text}", flush=True)
+
+    if response.status_code == 204:
+        print(f"[Discord] Message sent successfully!", flush=True)
 
 
 # ======================
@@ -52,11 +61,15 @@ def rabbitmq_consumer():
     Connect to RabbitMQ, consume messages from the queue, and schedule
     a Discord send operation in the event loop when a message arrives.
     """
-    connection_params = pika.ConnectionParameters(host=RABBITMQ_HOST,
-                                                  credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASS))
-    connection = pika.BlockingConnection(connection_params)
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(
+            host=RABBITMQ_HOST,
+            credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASS)
+        )
+    )
     channel = connection.channel()
     channel.queue_declare(queue=RABBITMQ_QUEUE, durable=True)
+
 
     def callback(ch, method, properties, body):
         """
@@ -80,6 +93,8 @@ def rabbitmq_consumer():
         channel.start_consuming()
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        print(f"[RabbitMQ] Error consuming messages: {e}", flush=True)
     finally:
         channel.stop_consuming()
         connection.close()
