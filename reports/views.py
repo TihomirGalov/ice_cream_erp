@@ -3,8 +3,10 @@ from decimal import Decimal
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db import transaction
 from reports.models import Report, ReportItem
 from reports.forms import SelectStoreForm, ReportForm, ReportItemInlineFormSet
+from reports.signals import report_created
 
 
 def store_form_view(request):
@@ -32,13 +34,16 @@ def create_report_view(request, pk):
         formset = ReportItemInlineFormSet(request.POST, instance=report_instance)
 
         if form.is_valid() and formset.is_valid():
-            form.save()
-            formset.save()
+            with transaction.atomic():
+                form.save()
+                formset.save()
 
-            for item in report_instance.items.all():
-                report_instance.price += item.quantity * Decimal(config.ICE_CREAM_PRICE / 100)
-            report_instance.save()
-            return HttpResponseRedirect(reverse("admin:reports_report_change", args=(pk,)))
+                for item in report_instance.items.all():
+                    report_instance.price += item.quantity * Decimal(config.ICE_CREAM_PRICE / 100)
+                report_instance.save()
+
+            report_created.send(sender=report_instance.__class__, report=report_instance)
+            return HttpResponseRedirect(reverse("admin:reports_report_changelist"))
     else:
 
         form = ReportForm(instance=report_instance)
