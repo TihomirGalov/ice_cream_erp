@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-1&m@8#yrn&)5kt
 DEBUG = True
 
 # Set hosts to allow any app on Railway and the local testing URL
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Set CSRF trusted origins to allow any app on Railway and the local testing URL
 CSRF_TRUSTED_ORIGINS = ['https://localhost']
@@ -36,8 +36,7 @@ CSRF_TRUSTED_ORIGINS = ['https://localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'jet.dashboard',
-    'jet',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'ice_cream_erp.urls'
 
@@ -118,6 +118,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('bg', _('Bulgarian')),
+]
+
 LANGUAGE_CODE = 'bg'
 
 TIME_ZONE = "Europe/Sofia"
@@ -144,6 +149,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, "conf/locale/"),
     os.path.join(os.path.dirname(BASE_DIR), "conf/locale/"),
@@ -160,36 +167,71 @@ CONSTANCE_CONFIG = {
 }
 
 
-# # Django JET Settings
-JET_SIDE_MENU_COMPACT = True
-JET_CHANGE_FORM_SIBLING_LINKS = True
-JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
-    {'label': _('Auth'), 'app_label': 'auth', 'permissions': ['is_superuser'], 'items': [
-        {'name': 'auth.user', 'label': _('Users')},
-        {'name': 'auth.group', 'label': _('Groups')},
-    ]},
-    {'label': _('Store'), 'app_label': 'stores', 'permissions': ['is_superuser'], 'items': [
-        {'name': 'stores.store', 'label': _('Stores')},
-    ]},
-    {'label': _('Ice Cream Types'), 'app_label': 'ice_cream_types', 'permissions': ['is_superuser'], 'items': [
-        {'name': 'ice_cream_types.icecreamtype', 'label': _('Ice Cream Types')},
-    ]},
-    {'label': _('Reports'), 'app_label': 'reports', 'items': [
-            {'url': '/reports/report/', 'label': _('Reports')},
-            {'url': '/reports/select_store/', 'label': _('Add Report')},
-    ]},
-    {'label': _('Charts'), 'app_label': 'charts', 'permissions': ['is_superuser'], 'items': [
-        {'url': '/charts/', 'label': _('Charts')},
-     ]},
-    {'label': _('Configuration'), 'app_label': 'config', 'permissions': ['is_superuser'], 'items': [
-        {'url': '/constance/config/', 'label': _('Configuration')},
-     ]}
-]
-LOGIN_REDIRECT_URL = '/'
+# # Django Jazzmin Settings
+JAZZMIN_SETTINGS = {
+    # Basic Branding
+    "site_title": "Ice Cream ERP",
+    "site_header": "Ice Cream ERP Admin",
+    "site_brand": "Ice Cream ERP",
+    "welcome_sign": "Welcome to Ice Cream ERP Admin",
+    "language_chooser": True,
+    "theme": "flatly",  # or 'cosmo', 'darkly', 'litera', etc.
+    "use_form_for_filters": True,
+    # Top menu (navbar) links
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "icon": "fas fa-home"},
+    ],
+
+    # User menu (top-right) links
+    "usermenu_links": [
+        {"model": "auth.user"},
+        {"name": "Logout", "url": "admin:logout", "icon": "fas fa-sign-out-alt"},
+    ],
+
+    # Icons for apps/models (Font Awesome)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.group": "fas fa-users",
+        "stores.store": "fas fa-store",
+        "ice_cream_types.icecreamtype": "fas fa-ice-cream",
+        "reports": "fas fa-file-alt",
+        "charts": "fas fa-chart-bar",
+        "config": "fas fa-cogs",
+    },
+
+    # Whether to show the theme toggler in the sidebar
+    "use_theme_toggler": True,
+
+    # Hide the UI builder link from the sidebar (optional)
+    "show_ui_builder": False,
+
+    "custom_links": {
+        "reports": [
+            {
+                "name": "Add Report",
+                "url": "/reports/select_store/",
+                "icon": "fas fa-plus",
+            },
+            {
+            "name": "Charts",
+            "url": "/reports/charts/",
+            "icon": "fa fa-chart-bar",
+        },
+        ],
+    },
+
+
+}
+
+# Redirect after login
+LOGIN_REDIRECT_URL = "/"
+
+
+
 
 # Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

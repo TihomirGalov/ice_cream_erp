@@ -1,14 +1,25 @@
-{% extends "admin/base.html" %}
+{% extends "admin/base_site.html" %}
 {% load static %}
 
-{% block title %}ice_cream_erp{% endblock %}
-
-{% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}"> ice_cream_erp </a></h1>
-{% if user.is_anonymous %}
-  {% include "admin/color_theme_toggle.html" %}
-{% endif %}
+{% block title %}
+    Ice Cream ERP | Admin
 {% endblock %}
 
-{% block nav-global %}{% endblock %}
+{% block branding %}
+    {{ block.super }}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">Ice Cream ERP</a>
+    </h1>
+{% endblock %}
 
+{% block nav-global %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block footer %}
+    {{ block.super }}
+    <footer>
+        <p>&copy; 2024 Ice Cream ERP. All Rights Reserved.</p>
+    </footer>
+{% endblock %}

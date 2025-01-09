@@ -1,6 +1,19 @@
 {% extends "admin/base_site.html" %}
 {% load static i18n %}
 
+{% block extrahead %}
+{{ block.super }}
+    <script type='text/javascript'
+src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+<script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'js/top_selling.js' %}"></script>
+<script src="{% static 'js/total_sales.js' %}"></script>
+<script src="{% static 'js/worker_profits.js' %}"></script>
+<script src="{% static 'js/store_profits.js' %}"></script>
+<script src="{% static 'js/profits_by_day.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/charts.css' %}">
+
+{% endblock %}
 
 {% block content %}
 {{ block.super }}
@@ -43,19 +56,3 @@
 
 {% endblock %}
 
-{% block extrajavascript %}
-{{ block.super }}
-<!-- apexcharts -->
-
-<script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
-<script src="{% static 'js/top_selling.js' %}"></script>
-<script src="{% static 'js/total_sales.js' %}"></script>
-<script src="{% static 'js/worker_profits.js' %}"></script>
-<script src="{% static 'js/store_profits.js' %}"></script>
-<script src="{% static 'js/profits_by_day.js' %}"></script>
-{% endblock %}
-
-{% block extracss %}
-{{ block.super }}
-<link rel="stylesheet" href="{% static 'css/charts.css' %}">
-{% endblock %}
