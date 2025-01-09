@@ -39,7 +39,7 @@ def create_report_view(request, pk):
                 formset.save()
 
                 for item in report_instance.items.all():
-                    report_instance.price += item.quantity * Decimal(config.ICE_CREAM_PRICE / 100)
+                    report_instance.price += item.quantity * Decimal(config.ICE_CREAM_PRICE * 10)
                 report_instance.save()
 
             report_created.send(sender=report_instance.__class__, report=report_instance)
