@@ -31,7 +31,7 @@ def send_discord_message(message):
         Total price: {price} BGN
         They left the following notes: {message['notes']}
         The following ice creams were sold:
-        {'\n'.join([f"{item['quantity']} {item['ice_cream']}{' (needs refill)' if item['need_refill'] else ''}" for item in message['items']])}
+        {' '.join([f"{item['quantity']} {item['ice_cream']}{' (needs refill)' if item['need_refill'] else ''}" for item in message['items']])}
         """
     }
 
