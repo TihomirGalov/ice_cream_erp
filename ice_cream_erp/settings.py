@@ -120,10 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGES = [
     ('en', _('English')),
-    ('bg', _('Bulgarian')),
 ]
 
-LANGUAGE_CODE = 'bg'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = "Europe/Sofia"
 
